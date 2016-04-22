@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+		<script src="gatt.js"></script>
+		<link rel="stylesheet" type="css" href="style.css">
+		
+		<title>Bart.js opg</title>
+		
+	</head>
+		
+	<body>
+		<div id="main">
+			<div> <h1> Bart.JS oppgave </h1> </div>
+			<div class='button-container'>
+				<button onclick="ble.connect();">Koble til enhet</button>
+			</div>
+			<div class='control-container'>
+				<fieldset>
+					<legend>Kontrollpanel</legend>
+					<p> LED-styring </p>
+					<input type="text" id="led_verdi" value="0"> 
+					<button class="btn_send">Send verdier</button>
+					<hr class="fatline">
+					<p> Servo-styring </p>
+					<input type="text" id="servo_verdi" value="0">
+					<button class="btn_send">Send verdier</button>
+					<hr class="fatline">					
+					<p> Motor-styring </p>
+					<input type="radio" id="motor_power" value="0">Av<br>
+					<input type="radio" id="motor_power" value="1" checked>På<br>
+					<hr>
+					<input type="radio" id="motor_direction" value="1">Framover <br>
+					<input type="radio" id="motor_direction" value="0">Bakover <br>
+					<hr>
+					<p id="liten"> Hastighet </p><input type="text" id="motor_speed" value="0">
+					<button class="btn_send">Send verdier</button>
+			    </fieldset>
+		    </div>
+			<!-- // END OF MAIN -->
+		<div>
+		
+		<script>
+			ble.charVal = new Uint8Array(20);
+			
+			$('.btn_send').click( function() {
+				var led_value = $('#led_verdi').val();
+				var servo_value = $('#servo_verdi').val();
+				var motor_power = $('input:radio[id=motor_power]:checked').val();
+				var motor_direction = $('input:radio[id=motor_direction]:checked').val();
+				var motor_speed = $('#motor_speed').val()
+				
+				ble.setBit(1, 'b', led_value);
+				ble.setBit(2, 'b', servo_value);
+				
+				if(motor_power == 1){
+					ble.setBit(10, 'b', motor_speed);
+					ble.setBit(14, 'b', motor_direction);
+				}
+				
+				else if (motor_power == 0){
+					ble.setBit(10, 'b', 0);
+				}
+				
+				ble.readWriteCharacteristic.writeValue(ble.charVal);
+				console.log(ble.charVal);			
+			});
+		</script>
+		
+	</body>
+</html>
