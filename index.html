@@ -13,34 +13,34 @@
 		
 	<body>
 		<div id="main">
-			<div> <h1> Bart.JS oppgave </h1> </div>
+			<div> <h1> Bart.JS Challenge </h1> </div>
 			<div class='button-container'>
-				<button onclick="ble.connect();">Koble til enhet</button>
+				<button onclick="ble.connect();">Connect to nearby device</button>
 			</div>
 			<div class='control-container'>
 				<fieldset>
-					<legend>Kontrollpanel</legend>
-					<p> LED-styring </p>
-					<input type="text" id="led_verdi" value="0 - 255"> 
-					<button class="btn_send">Send verdier</button>
-					<hr class="fatline">
-					<p> Servo-styring </p>
+					<p> Servo-control </p>
 					<input type="text" id="servo_verdi" value="0 - 20">
-					<button class="btn_send">Send verdier</button>
+					<button class="btn_send">Send values</button>
 					<hr class="fatline">					
-					<p> Motor-styring </p>
-					<input type="radio" name="motor_power" value="0">Av<br>
-					<input type="radio" name="motor_power" value="1" checked>På<br>
+					<legend>Control panel</legend>
+					<p> LED-control </p>
+					<input type="text" id="led_verdi" value="0 - 255"> 
+					<button class="btn_send">Send values</button>
+					<hr class="fatline">									
+					<p> Motor-control </p>
+					<input type="radio" name="motor_power" value="0">Off<br>
+					<input type="radio" name="motor_power" value="1" checked>On<br>
 					<hr>
-					<input type="radio" name="motor_direction" value="1">Framover <br>
-					<input type="radio" name="motor_direction" value="0">Bakover <br>
+					<input type="radio" name="motor_direction" value="1">Forwards<br>
+					<input type="radio" name="motor_direction" value="0">Backwards<br>
 					<hr>
-					<p id="liten"> Hastighet </p><input type="text" id="motor_speed" value="0 - 255">
-					<button class="btn_send">Send verdier</button>
+					<p id="liten"> Speed </p><input type="text" id="motor_speed" value="0 - 255">
+					<button class="btn_send">Send values</button>
 			    </fieldset>
 		    </div>
 			<!-- // END OF MAIN -->
-			<div id="linkgit"><a href="https://github.com/hmhalvorsen/hmhalvorsen.github.io">Link til oppgavetekst</a></div>
+			<div id="linkgit"><a href="https://github.com/hmhalvorsen/hmhalvorsen.github.io">Link to our challenge</a></div>
 		<div>
 		
 		<!-- // Script for sending the proper values.
