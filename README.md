@@ -4,7 +4,7 @@
 
 2. Change the angle of the servo by sending the correct values using the Web Bluetooth API.
 
-  SERVO-value: Byte 2, values from 0 - 20.
+  		SERVO-value: Byte 2, values from 0 - 20.
 				   Sets the angle of the servo.
 				   
 				   Example: Sending the decimal value 10, will make the servo turn to the mean angle.
@@ -22,7 +22,7 @@
 				   
 4. Control the motor by, you guessed it, sending the correct values using the Web Bluetooth API.
 
-    MOTOR-direction: Byte 14, values either 1 or 0.
+    		MOTOR-direction: Byte 14, values either 1 or 0.
 					Sets the direction of motor 1, either forwards or backwards.
 					
 		MOTOR-speed: Byte 10, values from 0 - 255.
