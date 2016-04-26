@@ -21,26 +21,56 @@
 				<fieldset>
 					<legend>Kontrollpanel</legend>
 					<p> LED-styring </p>
-					<input type="text" id="led_verdi" value="0"> 
+					<input type="text" id="led_verdi" value="0 - 255"> 
 					<button class="btn_send">Send verdier</button>
 					<hr class="fatline">
 					<p> Servo-styring </p>
-					<input type="text" id="servo_verdi" value="0">
+					<input type="text" id="servo_verdi" value="0 - 20">
 					<button class="btn_send">Send verdier</button>
 					<hr class="fatline">					
 					<p> Motor-styring </p>
-					<input type="radio" id="motor_power" value="0">Av<br>
-					<input type="radio" id="motor_power" value="1" checked>På<br>
+					<input type="radio" name="motor_power" value="0">Av<br>
+					<input type="radio" name="motor_power" value="1" checked>På<br>
 					<hr>
-					<input type="radio" id="motor_direction" value="1">Framover <br>
-					<input type="radio" id="motor_direction" value="0">Bakover <br>
+					<input type="radio" name="motor_direction" value="1">Framover <br>
+					<input type="radio" name="motor_direction" value="0">Bakover <br>
 					<hr>
-					<p id="liten"> Hastighet </p><input type="text" id="motor_speed" value="0">
+					<p id="liten"> Hastighet </p><input type="text" id="motor_speed" value="0 - 255">
 					<button class="btn_send">Send verdier</button>
 			    </fieldset>
 		    </div>
 			<!-- // END OF MAIN -->
 		<div>
+		
+		<!-- // Script for sending the proper values.
+		
+		LED-Value: Byte 1, values from 0 - 255. 
+				   This value can turn LEDs on the development board on. 
+				   Bit[0] = LED 1 (MSB)
+				   Bit[1] = LED 2 
+				   Bit[2] = LED 3
+				   Bit[3] = LED 4
+				   
+				   Example: Sending the decimal value 64 (binary 01000000) will turn LED 2 on, the rest will turn off.
+				   
+		SERVO-value: Byte 2, values from 0 - 20.
+				   Sets the angle of the servo.
+				   
+				   Example: Sending the decimal value 10, will make the servo turn to the mean angle.
+				   
+		MOTOR-direction: Byte 14, values either 1 or 0.
+					Sets the direction of motor 1, either forwards or backwards.
+					
+		MOTOR-speed: Byte 10, values from 0 - 255.
+					Sets the rotational speed of the motor. 
+					
+					0 = Minimum speed (None)
+					255 = Maximum speed
+					
+					Example: Setting MOTOR-direction to 1 and MOTOR-speed to 127 will make Motor 1 turn forwards at half speed.
+					
+				   
+		-->
 		
 		<script>
 			ble.charVal = new Uint8Array(20);
