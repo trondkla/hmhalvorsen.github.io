@@ -1,6 +1,6 @@
 # The challenge
 
-1. Connect to the nrf52 Development Kit using the Web Bluetooth API.
+1. Connect to the nrf52 Development Kit using the Web Bluetooth API. A good start would be to look at "gatt.js", here you are provided with the tools you need.
 
 2. Change the angle of the servo by sending the correct values using the Web Bluetooth API.
 
