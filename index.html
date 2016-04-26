@@ -91,7 +91,7 @@
 				
 				if(motor_power == 1){
 					ble.setBit(10, 'b', motor_speed);
-					ble.setBit(14, 'b', motor_direction);
+					ble.setBit(14, 0, motor_direction);
 				}
 				
 				else if (motor_power == 0){
