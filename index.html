@@ -7,7 +7,7 @@
 		<script src="gatt.js"></script>
 		<link rel="stylesheet" type="css" href="style.css">
 		
-		<title>Bart.js Challenge</title>
+		<title>Bart.JS Challenge</title>
 		
 	</head>
 		
@@ -81,8 +81,8 @@
 			$('.btn_send').click( function() {
 				var led_value = $('#led_verdi').val();
 				var servo_value = $('#servo_verdi').val();
-				var motor_power = $('input:radio[id=motor_power]:checked').val();
-				var motor_direction = $('input:radio[id=motor_direction]:checked').val();
+				var motor_power = $('input:radio[name=motor_power]:checked').val();
+				var motor_direction = $('input:radio[name=motor_direction]:checked').val();
 				var motor_speed = $('#motor_speed').val()
 				
 				ble.setBit(1, 'b', led_value);
