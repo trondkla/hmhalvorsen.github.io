@@ -31,7 +31,8 @@
 					0 = Minimum speed (None)
 					255 = Maximum speed
 					
-					Example: Setting MOTOR-direction to 1 and MOTOR-speed to 127 will make Motor 1 turn forwards at half speed.
+					Example: Setting MOTOR-direction to 1 and MOTOR-speed to 127 will make 
+					Motor 1 turn forwards at half speed.
 
 ## Extra challenge (adept)
 
