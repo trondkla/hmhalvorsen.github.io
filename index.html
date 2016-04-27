@@ -7,101 +7,73 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
 		<script src="gatt.js"></script>
 		<link rel="stylesheet" type="css" href="style.css">
-		
+
 		<title>Bart.JS Challenge</title>
-		
+
+		<script type="text/javascript">
+		/*
+
+		LED-Value: Byte 1, values from 0 - 255.
+				   This value can turn LEDs on the development board on.
+				   Bit[0] = LED 1 (MSB)
+				   Bit[1] = LED 2
+				   Bit[2] = LED 3
+				   Bit[3] = LED 4
+
+				   Example: Sending the decimal value 64 (binary 01000000) will turn LED 2 on, the rest will turn off.
+
+		SERVO-value: Byte 2, values from 0 - 20.
+				   Sets the angle of the servo.
+
+				   Example: Sending the decimal value 10, will make the servo turn to the mean angle.
+
+		MOTOR-direction: Byte 14, values either 1 or 0.
+					Sets the direction of motor 1, either forwards or backwards.
+
+		MOTOR-speed: Byte 10, values from 0 - 255.
+					Sets the rotational speed of the motor.
+
+					0 = Minimum speed (None)
+					255 = Maximum speed
+
+					Example: Setting MOTOR-direction to 1 and MOTOR-speed to 127 will make Motor 1 turn forwards at half speed.
+
+
+		*/
+			ble.connect();
+			$("#console").text("Connected");
+
+			var drive = function(forward) {
+				ble.charVal = new Uint8Array(20);
+
+				var led_2 = 64;
+				var motor_direction = !!forward ? 1 : 0;
+				var motor_speed = 255;
+				var servo = 20;
+
+				ble.setBit(1, 'b', led_2);
+				ble.setBit(2, 'b', servo);
+
+				ble.setBit(10, 'b', motor_speed);
+				ble.setBit(14, 0, motor_direction);
+
+				ble.readWriteCharacteristic.writeValue(ble.charVal);
+				$("#console").text(!!forward ? "Going forward" : "Going backwards");
+			};
+
+			setInterval(drive, 1000, true);
+
+
+			console.log(ble.charVal);
+
+		</script>
 	</head>
-		
+
 	<body>
 		<div id="main">
 			<div> <h1> Bart.JS Challenge </h1> </div>
-			<div class='button-container'>
-				<button onclick="ble.connect();">Connect to a nearby device</button>
-			</div>
-			<div class='control-container'>
-				<fieldset>
-					<p> Servo-control </p>
-					<input type="text" id="servo_verdi" value="0 - 20">
-					<button class="btn_send">Send values</button>
-					<hr class="fatline">					
-					<legend>Control panel</legend>
-					<p> LED-control </p>
-					<input type="text" id="led_verdi" value="0 - 255"> 
-					<button class="btn_send">Send values</button>
-					<hr class="fatline">									
-					<p> Motor-control </p>
-					<input type="radio" name="motor_power" value="0">Off<br>
-					<input type="radio" name="motor_power" value="1" checked>On<br>
-					<hr>
-					<input type="radio" name="motor_direction" value="1">Forwards<br>
-					<input type="radio" name="motor_direction" value="0">Backwards<br>
-					<hr>
-					<p id="liten"> Speed </p><input type="text" id="motor_speed" value="0 - 255">
-					<button class="btn_send">Send values</button>
-			    </fieldset>
-		    </div>
-			<div id="linkgit"><a href="https://github.com/hmhalvorsen/hmhalvorsen.github.io">Link to our challenge</a></div>
-			
-			<!-- // END OF MAIN -->
-			
-		<div>
-		
-		<!-- // Script for sending the proper values.
-		
-		LED-Value: Byte 1, values from 0 - 255. 
-				   This value can turn LEDs on the development board on. 
-				   Bit[0] = LED 1 (MSB)
-				   Bit[1] = LED 2 
-				   Bit[2] = LED 3
-				   Bit[3] = LED 4
-				   
-				   Example: Sending the decimal value 64 (binary 01000000) will turn LED 2 on, the rest will turn off.
-				   
-		SERVO-value: Byte 2, values from 0 - 20.
-				   Sets the angle of the servo.
-				   
-				   Example: Sending the decimal value 10, will make the servo turn to the mean angle.
-				   
-		MOTOR-direction: Byte 14, values either 1 or 0.
-					Sets the direction of motor 1, either forwards or backwards.
-					
-		MOTOR-speed: Byte 10, values from 0 - 255.
-					Sets the rotational speed of the motor. 
-					
-					0 = Minimum speed (None)
-					255 = Maximum speed
-					
-					Example: Setting MOTOR-direction to 1 and MOTOR-speed to 127 will make Motor 1 turn forwards at half speed.
-					
-				   
-		-->
-		
-		<script>
-			ble.charVal = new Uint8Array(20);
-			
-			$('.btn_send').click( function() {
-				var led_value = $('#led_verdi').val();
-				var servo_value = $('#servo_verdi').val();
-				var motor_power = $('input:radio[name=motor_power]:checked').val();
-				var motor_direction = $('input:radio[name=motor_direction]:checked').val();
-				var motor_speed = $('#motor_speed').val()
-				
-				ble.setBit(1, 'b', led_value);
-				ble.setBit(2, 'b', servo_value);
-				
-				if(motor_power == 1){
-					ble.setBit(10, 'b', motor_speed);
-					ble.setBit(14, 0, motor_direction);
-				}
-				
-				else if (motor_power == 0){
-					ble.setBit(10, 'b', 0);
-				}
-				
-				ble.readWriteCharacteristic.writeValue(ble.charVal);
-				console.log(ble.charVal);			
-			});
-		</script>
-		
+
+			<section id="console">
+			</section>
 	</body>
 </html>
