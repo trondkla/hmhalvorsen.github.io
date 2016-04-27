@@ -6,13 +6,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
 		<script type="text/javascript">
+		//var ble = { connect: function() {}, setBit: function() {}, readWriteCharacteristic: {writeValue: function() {}}};
 			console.log = function(message) {
 				var element = document.getElementById("console");
 
-				var span = document.createElement("span");        // Create a <button> element
+				var span = document.createElement("p");        // Create a <button> element
 				var t = document.createTextNode(message);       // Create a text node
 				span.appendChild(t);                                // Append the text to <button>
-				element.appendChild(span);
+				element.insertBefore(span, element.firstChild);
 
 			}
 		</script>
