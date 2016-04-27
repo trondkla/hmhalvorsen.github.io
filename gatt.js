@@ -42,7 +42,7 @@ var ble = {
                 .then(gattServer => {
                     this.mainServer = gattServer;
                     console.log('> Bluetooth Device connected: ');
-                    //this.connectionStatus(1);
+                    this.connectionStatus(1);
 
                 });
             })
