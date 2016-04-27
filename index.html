@@ -75,7 +75,9 @@
 				console.log(ble.charVal);
 			};
 
-			setInterval(drive, 1000, true);
+			$("#start").click(function() {
+				setInterval(drive, 1000, true);
+			});
 
 		});
 
@@ -90,5 +92,7 @@
 
 			<section id="console">
 			</section>
+
+			<button id="start"></button>
 	</body>
 </html>
