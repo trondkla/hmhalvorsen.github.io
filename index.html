@@ -5,6 +5,17 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+		<script type="text/javascript">
+			console.log = function(message) {
+				var element = document.getElementById("console");
+
+				var span = document.createElement("span");        // Create a <button> element
+				var t = document.createTextNode(message);       // Create a text node
+				span.appendChild(t);                                // Append the text to <button>
+				element.appendChild(span);
+
+			}
+		</script>
 		<script src="gatt.js"></script>
 		<link rel="stylesheet" type="css" href="style.css">
 
@@ -43,7 +54,6 @@
 		$(function() {
 
 			ble.connect();
-			$("#console").text("Connected");
 
 			var drive = function(forward) {
 				ble.charVal = new Uint8Array(20);
@@ -60,7 +70,7 @@
 				ble.setBit(14, 0, motor_direction);
 
 				ble.readWriteCharacteristic.writeValue(ble.charVal);
-				$("#console").text(!!forward ? "Going forward" : "Going backwards");
+				console.log(!!forward ? "Going forward" : "Going backwards");
 				console.log(ble.charVal);
 			};
 
