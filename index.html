@@ -40,6 +40,8 @@
 
 
 		*/
+		$(function() {
+
 			ble.connect();
 			$("#console").text("Connected");
 
@@ -59,12 +61,13 @@
 
 				ble.readWriteCharacteristic.writeValue(ble.charVal);
 				$("#console").text(!!forward ? "Going forward" : "Going backwards");
+				console.log(ble.charVal);
 			};
 
 			setInterval(drive, 1000, true);
 
+		});
 
-			console.log(ble.charVal);
 
 		</script>
 	</head>
