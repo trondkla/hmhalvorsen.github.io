@@ -34,6 +34,12 @@
 					Example: Setting MOTOR-direction to 1 and MOTOR-speed to 127 will make 
 					Motor 1 turn forwards at half speed.
 
+![Bits and bytes for the challenge](http://i.imgur.com/BZ1P67d.png)
+
 ## Extra challenge (adept)
 
 Make a script that controls the cars used in our bachelor thesis!
+
+Here are the bits and bytes used in the firmware:
+
+![Bits and bytes used in firmware](http://i.imgur.com/PaFaHCY.png)
